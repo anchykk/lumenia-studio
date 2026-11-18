@@ -1,0 +1,1833 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', Arial, sans-serif;
+  color: var(--white);
+  background: var(--black);
+  overflow-wrap: break-word;   /* довге слово не розпирає блок */
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a   { color: inherit; text-decoration: none; }
+ul  { margin: 0; padding: 0; list-style: none; }
+
+
+:root {
+
+  --black: #000;
+  --white: #fff;
+  --text-dark: #3C3939;
+  --text-light: #ddd;
+  --label: #B8B8B8;
+  --field-bg: #202020;
+  --placeholder: #696868;
+  --line: #555;
+  --btn-grey: #3a3a3a;
+  --card-grey: #d9d9d9;
+  --circle-light: #e6e6e6;
+  --hero-bg: #1a1a1a;
+  --overlay-light: rgba(255, 255, 255, 0.7);
+  --overlay-dark: rgba(0, 0, 0, 0.5);
+  --caption-from: rgba(0, 0, 0, 0.55);
+  --caption-to: rgba(0, 0, 0, 0);
+
+
+  --ph-dark: #2a2a2a;
+  --ph-dark-text: #777;
+  --ph-light: #d6d6d6;
+  --ph-light-text: #888;
+
+  --page-x: 40px;
+
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+  --space-6: 60px;
+
+
+  --radius-pill: 40px;
+  --btn-width: 280px;
+  --btn-min-height: 56px;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.ph {
+  display: flex;
+  flex-direction: column;
+  background: var(--ph-dark);
+  color: var(--ph-dark-text);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+.ph::before {
+  content: "ФОТО";
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ph--light {
+  background: var(--ph-light);
+  color: var(--ph-light-text);
+}
+
+.pill-btn,
+.btn-white,
+.rooms__btn,
+.booking__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--btn-width);
+  max-width: 100%;
+  min-height: var(--btn-min-height);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.pill-btn { background: var(--black); color: var(--white); }
+
+.btn-white,
+.rooms__btn,
+.booking__btn { background: var(--white); color: var(--black); }
+
+
+/* ---------- Header ---------- */
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80px;
+  padding: 0 var(--page-x);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.logo__icon {
+  width: 90px;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.logo__icon::before { content: "ЛОГО"; }
+
+.logo__text {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 37px;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-align: center;
+  display: block;
+}
+
+.logo__sub {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+/* меню + кнопка (на ПК в один рядок) */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.menu {
+  display: flex;
+  gap: 28px;
+}
+
+.menu a {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  white-space: nowrap;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2) var(--space-4);
+  background: var(--white);
+  color: var(--black);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+
+.nav-toggle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+
+.burger { display: none; }
+.header { position: relative; z-index: 100; }
+.header__inner { position: relative; }   /* меню позиціюється відносно шапки */
+
+
+/* ---------- Hero ---------- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 900px;
+  padding: 0 var(--page-x) 80px;
+  background-color: var(--hero-bg);
+}
+
+.hero__inner {
+  align-self: flex-end;
+  margin-bottom: var(--space-6);
+  text-align: right;
+}
+
+.hero__title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 1.2;
+  letter-spacing: 4px;
+  margin: 0 0 20px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.hero__text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.3;
+  color: var(--text-light);
+  margin: 0;
+}
+
+.hero__btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: flex-start;
+}
+
+.hero__btn-text {
+  margin-bottom: -30px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 26px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.hero__btn-row {
+  display: flex;
+  align-items: center;
+}
+
+.hero__line {
+  border-top: 1px solid var(--white);
+}
+
+.hero__line--before { width: 230px; }
+.hero__line--after  { width: 55px; }
+
+.hero__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: var(--circle-light);
+  flex-shrink: 0;
+}
+
+
+/* ---------- About ---------- */
+.about {
+  background: var(--white);
+  color: var(--black);
+  padding: 0 var(--page-x) 33px;
+}
+
+.about__inner {
+  display: flex;
+  flex-direction: column;
+  min-height: 700px;
+}
+
+.about__title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 90px;
+  line-height: 1;
+  margin: 50px 0 0;
+  color: var(--black);
+}
+
+.about__intro {
+  align-self: flex-end;
+  max-width: 840px;
+  margin: 13px 0 0;
+  text-align: right;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--text-dark);
+}
+
+.about__body {
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
+  margin-top: 60px;
+}
+
+.about__main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.about__lead {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.65;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.about__note {
+  align-self: flex-end;
+  margin: 70px 0 0;
+  text-align: right;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--text-dark);
+  z-index: 1;
+}
+
+.about__link {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 18px;
+  margin: 40px 0 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.about__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: var(--black);
+  flex-shrink: 0;
+}
+
+.about__image {
+  flex: 0 0 420px;
+  aspect-ratio: 1 / 1;
+  margin: 0 0 16px -130px;
+}
+
+
+/* ---------- Rooms ---------- */
+.rooms {
+  background: var(--black);
+  color: var(--white);
+  padding: 115px var(--page-x) 50px;
+}
+
+.rooms__title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 64px;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+}
+
+.rooms__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 96px;
+}
+
+.room {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 26.5%;
+}
+
+.room__photo {
+  aspect-ratio: 9 / 10;
+}
+
+.room__price {
+  align-self: flex-start;
+  margin-bottom: 18px;
+  padding: 6px 16px 6px 6px;
+  background: var(--overlay-dark);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 1.2;
+  color: var(--white);
+}
+
+.room__name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  margin: 36px 0 18px;
+}
+
+.room__text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--text-light);
+  margin: 0 0 22px;
+}
+
+.room__link {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  margin-top: auto;
+}
+
+.room__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: var(--white);
+  flex-shrink: 0;
+}
+
+.rooms__note {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--white);
+  margin: 120px 0 32px;
+}
+
+.rooms__btn { margin: 0 auto; }
+
+
+/* ---------- Services ---------- */
+.services {
+  background: var(--white);
+  color: var(--black);
+  padding: 100px var(--page-x) 0;
+}
+
+.services__title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 72px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0 0 34px;
+}
+
+.service {
+  margin-bottom: var(--space-6);
+}
+
+.service__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.service__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: var(--black);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.service__name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 1.2;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.service__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 66px;
+}
+
+.service__desc {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 1.35;
+  white-space: nowrap;
+  color: var(--text-dark);
+  margin: 28px 0 26px;
+}
+
+.service__price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--btn-min-height);
+  padding: 0 30px;
+  background: var(--black);
+  color: var(--white);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.photographers {
+  display: flex;
+  gap: 57px;
+  margin-top: var(--space-5);
+}
+
+.photographer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  padding: 34px 36px 36px;
+  background: var(--card-grey);
+}
+
+.photographer__photo {
+  aspect-ratio: 5 / 6;
+}
+
+.photographer__price {
+  align-self: flex-start;
+  margin-bottom: var(--space-4);
+  padding: 5px 14px 5px 8px;
+  background: var(--overlay-light);
+  color: var(--black);
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+.photographer__name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  margin: 34px 0 18px;
+}
+
+.photographer__role {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-dark);
+  margin: 0 0 22px;
+}
+
+.photographer__text {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.equip {
+  width: 100%;
+  margin: 26px 0 32px;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 10px solid var(--black);
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 23px;
+  line-height: 1.25;
+}
+
+.equip td {
+  padding: 20px var(--space-4);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.equip tr:first-child td { border-top: 1px solid var(--line); }
+.equip td:first-child    { border-left: 1px solid var(--line); }
+
+.equip td:last-child {
+  width: 180px;
+  padding: 20px 10px;
+  text-align: center;
+}
+
+.service__action { margin: 0; }
+
+.service--certs {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-bottom: 0;
+}
+
+.certs__text {
+  flex: 1;
+  min-width: 0;
+  padding-bottom: 30px;
+}
+
+.certs__list {
+  list-style: disc;
+  margin: 0 0 36px;
+  padding-left: var(--space-4);
+  font-size: 20px;
+  line-height: 1.55;
+  white-space: nowrap;
+  color: var(--text-dark);
+}
+
+.certs__list li { margin-bottom: 15px; }
+
+.certs__images {
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  align-self: flex-end;
+  width: 620px;
+  margin-top: -90px;
+}
+
+.certs__img--1 {
+  flex: 0 0 380px;
+  aspect-ratio: 4 / 3;
+}
+
+.certs__img--2 {
+  flex: 0 0 420px;
+  aspect-ratio: 4 / 3;
+  margin: 130px 0 0 -180px;
+}
+
+
+/* ---------- Courses ---------- */
+.courses {
+  background: var(--black);
+  color: var(--white);
+  padding: 105px var(--page-x) 50px;
+}
+
+.courses__title,
+.courses__subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+}
+
+.courses__subtitle { margin-bottom: var(--space-2); }
+
+.school {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  aspect-ratio: 2.04 / 1;
+  margin: 0 0 var(--space-6);
+  color: var(--white);
+}
+
+.school::before {
+  flex: 0 0 100%;
+  align-self: stretch;
+  margin-right: -100%;
+  color: var(--ph-dark-text);
+}
+
+.course::before {
+  flex: none;
+  align-self: flex-start;
+  margin: var(--space-3) 0 -36px var(--space-3);
+}
+
+.school__content {
+  width: 460px;
+  margin: 60px 56px 0 auto;
+  text-align: right;
+  color: var(--white);
+}
+
+.school__name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  margin: 0 0 22px;
+}
+
+.school__text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0;
+  line-height: 1.4;
+  white-space: nowrap;
+  margin: 0 0 80px;
+}
+
+.school__note {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  letter-spacing: 0;
+  line-height: 1.4;
+  margin: 0 0 14px;
+}
+
+.school .btn-white { margin-left: auto; }
+
+/* Картки курсів: три в ряд, назва в кожній картці стоїть по-своєму */
+.courses__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 150px var(--space-5);
+}
+
+.course {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 calc((100% - 80px) / 3);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  color: var(--white);
+}
+
+.course::before { color: var(--ph-dark-text); }
+
+.course__name {
+  align-self: flex-end;
+  margin: 290px 44px 0 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 34px;
+  letter-spacing: 0;
+  line-height: 1.1;
+  text-align: right;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--white);
+}
+
+.course:nth-child(1) .course__name { margin: 290px 44px 0 0; }
+.course:nth-child(2) .course__name { margin: 70px 10px 0 0; }
+.course:nth-child(3) .course__name { margin: 290px 54px 0 0; }
+.course:nth-child(4) .course__name { margin: 18px 44px 0 0; }
+.course:nth-child(5) .course__name { margin: 18px 12px 0 0; }
+.course:nth-child(6) .course__name { margin: 45px 29px 0 0; }
+
+.course__bottom {
+  margin-top: auto;
+  padding: 0 73px 20px;
+}
+
+.course__info {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: 0;
+  line-height: 1.3;
+  margin: 0 0 22px;
+  color: var(--white);
+}
+
+
+/* ---------- Calendar ---------- */
+.calendar {
+  background: var(--black);
+  color: var(--white);
+  padding: var(--space-5) var(--page-x) 50px;
+}
+
+.calendar__title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-4);
+}
+
+.calendar__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-family: 'Cinzel', serif;
+  font-weight: 500;
+  font-size: 32px;
+  letter-spacing: 2px;
+}
+
+.calendar__logo-img,
+.footer__logo-img {
+  width: 48px;
+  aspect-ratio: 1 / 1;
+  font-size: 9px;
+  letter-spacing: 0;
+}
+
+.calendar__logo-img::before,
+.footer__logo-img::before { content: "ЛОГО"; }
+
+.cal {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.cal thead th {
+  padding: 0 0 var(--space-2);
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.cal thead th:first-child {
+  width: 150px;
+  text-align: left;
+}
+
+.cal__date,
+.cal__day {
+  display: block;
+}
+
+.cal__date { font-size: 20px; }
+.cal__day  { font-size: 18px; font-weight: 500; }
+
+.cal__nav {
+  white-space: nowrap;
+}
+
+.cal__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  aspect-ratio: 1 / 1;
+  margin-right: var(--space-1);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--btn-grey);
+}
+
+.cal tbody th,
+.cal tbody td {
+  padding: 15px 0;
+  border-right: 1px solid var(--white);
+  border-bottom: 1px solid var(--white);
+  text-align: center;
+}
+
+.cal tbody th {
+  border-left: 1px solid var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 19px;
+}
+
+.cal tbody tr:first-child > * {
+  border-top: 1px solid var(--white);
+}
+
+.cal tbody tr:first-child > *:first-child { border-top-left-radius: 16px; }
+.cal tbody tr:first-child > *:last-child  { border-top-right-radius: 16px; }
+.cal tbody tr:last-child > *:first-child  { border-bottom-left-radius: 16px; }
+.cal tbody tr:last-child > *:last-child   { border-bottom-right-radius: 16px; }
+
+.free {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 27px;
+  line-height: 26px;
+  color: var(--text-light);
+}
+
+.busy {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 8V6a3 3 0 1 1 6 0v3H9zm3 5a2 2 0 0 1 1 3.7V19h-2v-1.3A2 2 0 0 1 12 14z'/%3E%3C/svg%3E") center / 26px no-repeat;
+}
+
+
+/* ---------- Booking ---------- */
+.booking {
+  background: var(--black);
+  color: var(--white);
+  padding: 50px var(--page-x) var(--space-6);
+}
+
+.booking__title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 70px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--black);
+  -webkit-text-stroke: 2px var(--white);
+  paint-order: stroke fill;
+}
+
+.booking__subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--white);
+  margin: -10px 0 50px;
+}
+
+/* Форма: поля в рядки по п'ять колонок, «широкі» поля займають дві */
+.booking__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px 30px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 calc((100% - 120px) / 5);
+}
+
+.field--wide {
+  flex: 0 0 calc((100% - 120px) * 2 / 5 + 30px);
+}
+
+.field__label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--label);
+  margin-bottom: var(--space-1);
+}
+
+.field__control {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 var(--space-3);
+  background-color: var(--field-bg);
+  border: 0;
+  border-radius: 0;
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.field__control::placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+}
+
+.field__control:focus {
+  outline: 1px solid var(--white);
+}
+
+.booking__actions {
+  flex: 0 0 100%;
+  margin-top: var(--space-2);
+}
+
+.booking__line {
+  width: 44%;
+  margin-top: 56px;
+  border-top: 1px solid var(--white);
+}
+
+
+/* ---------- Team ---------- */
+.team {
+  background: var(--white);
+  color: var(--black);
+  padding: 80px var(--page-x) 70px;
+}
+
+.team__title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-3);
+}
+
+.team__subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.3;
+  max-width: 1100px;
+  margin: 0 0 35px;
+}
+
+.team__top {
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
+}
+
+/* Фото команди: підпис внизу зліва на затемненому градієнті */
+.team__photo {
+  flex: 0 0 41%;
+  aspect-ratio: 1 / 1;
+  container-type: inline-size;
+}
+
+.team__caption {
+  margin: 0;
+  padding: var(--space-5) var(--space-2) var(--space-4) 28px;
+  background: linear-gradient(to top, var(--caption-from), var(--caption-to));
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 4.8cqw;
+  letter-spacing: 0;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.team__text {
+  flex: 1;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.6;
+}
+
+.team__text p {
+  margin: 0 0 36px;
+}
+
+.team__text p:last-child {
+  margin-bottom: 0;
+}
+
+.team__text strong {
+  font-weight: 700;
+}
+
+/* Менша чорна таблиця з іменами: три в ряд, білі лінії між клітинками */
+.team__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin: 80px 0 0;
+  background: var(--white);
+}
+
+.member {
+  flex: 0 0 calc((100% - 4px) / 3);
+  padding: var(--space-4) 44px 26px;
+  background: var(--black);
+  color: var(--white);
+}
+
+.member__name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.2;
+  margin: 0 0 4px;
+}
+
+.member__role {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin: 0;
+}
+
+
+/* ---------- Studio moments ---------- */
+.moments {
+  --gap: var(--space-4);
+  background: var(--white);
+  color: var(--black);
+  padding: var(--space-5) var(--page-x);
+  overflow: hidden;
+}
+
+.moments__row {
+  display: flex;
+}
+
+.moments__row--top {
+  align-items: flex-start;
+}
+
+.moments__row--bottom {
+  margin-top: var(--space-4);
+}
+
+.moments__head {
+  flex: 0 0 25%;
+  padding-top: 20px;
+}
+
+.moments__title,
+.moments__work-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* Лінія з крапкою */
+.moments__mark {
+  display: flex;
+  align-items: center;
+  margin: 18px 0 0 var(--space-4);
+}
+
+.moments__mark::before {
+  content: "";
+  width: 16px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: var(--black);
+}
+
+.moments__mark::after {
+  content: "";
+  width: 140px;
+  border-top: 2px solid var(--black);
+}
+
+.moments__mark--end {
+  flex-direction: row-reverse;
+  margin: 18px 0 0;
+}
+
+/* Ряд фото: стрілки — це звичайні flex-елементи з від'ємними відступами */
+.moments__photos {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  flex: 1;
+}
+
+.moments__img {
+  aspect-ratio: 3 / 4;
+}
+
+/* Верхній ряд: три фото, нижній: чотири, розмір кожного залежить від ширини ряду */
+.moments__row--top .moments__img    { flex: 0 0 calc((100% - 2 * var(--gap)) / 3); }
+.moments__row--bottom .moments__img { flex: 0 0 calc((100% - 3 * var(--gap)) / 4); }
+
+.moments__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  width: 44px;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--black);
+  z-index: 2;
+}
+
+/* Відступи стрілок враховують gap між елементами ряду */
+.moments__row--top .moments__arrow--prev    { margin: 0 calc(-22px - var(--gap)) 0 -22px; }
+.moments__row--top .moments__arrow--next    { margin: 0 var(--space-3) 0 calc(-60px - var(--gap)); }
+.moments__row--bottom .moments__arrow--prev { margin: 0 calc(-74px - var(--gap)) 0 30px; }
+.moments__row--bottom .moments__arrow--next { margin: 0 -22px 0 calc(-22px - var(--gap)); }
+
+.moments__work {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: fit-content;
+  margin: 28px 0 0 auto;
+  text-align: right;
+}
+
+/* ---------- Contacts ---------- */
+.contacts {
+  background: var(--black);
+  color: var(--white);
+  padding: 45px var(--page-x) 0;
+}
+
+.contacts__title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  margin: 0 0 40px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--white);
+}
+
+/* Карта-заглушка: світла картка зліва, напис «ФОТО» в решті місця */
+.map {
+  flex-direction: row;
+  align-items: flex-start;
+  min-height: 400px;
+  padding: 50px 0 0 130px;
+}
+
+.map::before { order: 2; align-self: stretch; }
+
+.map__card {
+  flex: 0 0 280px;
+  padding: 22px 20px;
+  background: var(--card-grey);
+  color: var(--black);
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0;
+  line-height: 1.6;
+}
+
+.map__card p { margin: 0 0 14px; }
+.map__card p:last-child { margin-bottom: 0; }
+
+.map__address {
+  font-weight: 600;
+  font-size: 19px;
+}
+
+.map__route {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.map__contact {
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.contacts__note {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--white);
+  padding: 14px 0;
+  margin: 0;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  background: var(--black);
+  color: var(--white);
+  padding: 0 var(--page-x) 40px;
+}
+
+.footer__title {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.2;
+  margin: 0 0 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--white);
+}
+
+.footer__social {
+  display: flex;
+  gap: var(--space-5);
+  margin: 0 0 32px;
+}
+
+.social {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  text-align: center;
+}
+
+.social__text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--white);
+  margin: 0;
+}
+
+.footer__logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer__logo-img {
+  width: 64px;
+  margin-bottom: var(--space-1);
+}
+
+.footer__logo-text {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 34px;
+}
+
+.footer__logo-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: var(--white);
+}
+
+
+
+
+@media (max-width: 1200px) {
+
+  :root { --page-x: 28px; }
+
+  .burger {
+    display: block;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  
+  .nav-toggle:focus-visible + .burger {
+    outline: 3px solid var(--white);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .burger span,
+  .burger span::before,
+  .burger span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 28px;
+    height: 3px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: transform .25s ease, background .25s ease, top .25s ease;
+  }
+
+  .burger span         { left: 8px; top: calc(50% - 1.5px); }  /* середня риска */
+  .burger span::before { top: -9px; }                          /* верхня */
+  .burger span::after  { top: 9px; }                           /* нижня */
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--page-x) var(--space-4);
+    background: var(--black);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, .6);
+    visibility: hidden;
+    transform: translateY(-130%);
+    transition: transform .3s ease, visibility .3s ease;
+  }
+
+  .menu {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .menu a {
+    display: block;
+    padding: 14px 0;          
+    font-size: 18px;
+  }
+
+  .nav .btn {
+    min-height: 48px;
+    width: 100%;
+  }
+
+  .nav-toggle:checked ~ .nav {
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav-toggle:checked ~ .burger span         { background: transparent; }
+  .nav-toggle:checked ~ .burger span::before { top: 0; transform: rotate(45deg); }
+  .nav-toggle:checked ~ .burger span::after  { top: 0; transform: rotate(-45deg); }
+
+  /* шапка */
+  .logo__icon { width: 64px; }
+  .logo__text { font-size: 28px; }
+  .logo__sub  { font-size: 12px; }
+
+
+  .about__lead,
+  .room__text,
+  .service__name,
+  .service__desc,
+  .certs__list,
+  .school__text { white-space: normal; }
+
+  .about__intro br,
+  .about__lead br,
+  .about__note br,
+  .room__text br,
+  .rooms__note br,
+  .service__desc br,
+  .certs__list br,
+  .school__text br,
+  .school__note br,
+  .course__name br,
+  .course__info br,
+  .social__text br,
+  .equip br { display: none; }
+
+  .hero { min-height: 720px; }
+  .hero__title { font-size: 40px; }
+
+  /* про нас */
+  .about__title { font-size: 72px; }
+  .about__lead  { font-size: 20px; }
+  .about__intro,
+  .about__note  { font-size: 18px; }
+  .about__image { flex: 0 0 300px; margin: 0 0 16px 28px; }
+
+  /* зали */
+  .rooms__title { font-size: 52px; }
+  .rooms__note  { font-size: 22px; }
+  .room__name   { font-size: clamp(20px, 2.2vw, 26px); }
+  .room__text   { font-size: 18px; }
+
+  /* послуги */
+  .services__title { font-size: 56px; }
+  .service__name   { font-size: 30px; }
+  .service__desc   { font-size: 20px; }
+  .equip           { font-size: 19px; }
+  .photographer    { padding: 24px; }
+  .photographers   { gap: 24px; }
+  .photographer__name { font-size: 20px; margin: 24px 0 14px; }
+  .photographer__price { font-size: 17px; }
+  .photographer__text { font-size: 16px; }
+
+  .certs__list   { font-size: 18px; }
+  .certs__images { width: 480px; }
+  .certs__img--1 { flex-basis: 300px; }
+  .certs__img--2 { flex-basis: 340px; margin: 100px 0 0 -140px; }
+
+  /* курси */
+  .courses__title,
+  .courses__subtitle { font-size: 44px; }
+
+  .school { aspect-ratio: auto; min-height: 480px; }
+  .school__content { width: 380px; margin: 40px 40px 40px auto; }
+  .school__text { font-size: 18px; margin-bottom: 40px; }
+
+  .courses__list { row-gap: 60px; }
+  .course { aspect-ratio: auto; min-height: 430px; container-type: inline-size; }
+  .courses__list .course:nth-child(n) .course__name {
+    margin: 90px 16px 0 0;
+    font-size: clamp(18px, 7cqw, 30px);   
+    white-space: normal;
+  }
+  .course__bottom { padding: 0 24px 20px; }
+  .course__info   { font-size: 18px; }
+
+  /* бронювання */
+  .booking__subtitle { margin-top: 10px; }
+  .booking__form { gap: 24px 20px; }
+  .field        { flex: 0 0 calc((100% - 40px) / 3); }
+  .field--wide  { flex: 0 0 calc((100% - 20px) / 2); }
+
+  /* команда */
+  .team__text { font-size: 18px; }
+  .member { padding: var(--space-4) 28px 26px; }
+  .member__name { font-size: 24px; }
+  .member__role { font-size: 17px; overflow-wrap: anywhere; }
+
+  /* studio moments */
+  .moments__head { flex-basis: 28%; }
+  .moments__title,
+  .moments__work-text { font-size: 22px; }
+
+  /* футер */
+  .social__text { font-size: 18px; }
+}
+
+
+/* до 900px */
+@media (max-width: 900px) {
+
+  :root { --page-x: 20px; }
+
+  .header__inner { min-height: 72px; }
+
+  /* перший екран */
+  .hero { min-height: 640px; }
+  .hero__title { font-size: 36px; white-space: normal; }
+
+  /* про нас: усе в стовпчик */
+  .about__inner { min-height: 0; }
+  .about__title { font-size: 56px; }
+  .about__intro { align-self: stretch; max-width: none; text-align: left; }
+  .about__body  { flex-direction: column; align-items: stretch; margin-top: 32px; }
+  .about__lead  { font-size: 18px; line-height: 1.5; letter-spacing: 1px; }
+  .about__note  { align-self: stretch; text-align: left; margin-top: 28px; }
+  .about__link  { margin-top: 28px; }
+  .about__image { flex: none; width: 100%; max-width: 420px; align-self: flex-end; margin: 32px 0 0; }
+
+  /* зали: по дві в ряд */
+  .rooms { padding-top: 80px; }
+  .rooms__list { row-gap: 56px; }
+  .room { flex: 0 0 calc(50% - 12px); }
+  .rooms__note { margin-top: 72px; font-size: 20px; }
+
+  /* послуги */
+  .service__body { padding-left: 0; }
+  .photographers { gap: 16px; }
+  .photographer  { padding: 16px; }
+  .photographer__name { font-size: 17px; margin: 18px 0 10px; }
+  .photographer__price { font-size: 15px; }
+  .photographer__role { font-size: 13px; margin-bottom: 12px; }
+  .photographer__text { font-size: 15px; }
+  .equip { font-size: 17px; }
+  .equip td { padding: 14px 16px; }
+  .equip td:last-child { width: 130px; }
+
+  .service--certs { flex-direction: column; gap: var(--space-4); }
+  .certs__text { padding-bottom: 48px; }
+  .certs__images { align-self: stretch; width: 100%; margin-top: 0; }
+  .certs__img--1 { flex-basis: 55%; }
+  .certs__img--2 { flex-basis: 60%; margin: 60px 0 0 -15%; }
+
+  /* курси: по дві в ряд */
+  .courses { padding-top: 80px; }
+  .courses__list { gap: 40px 24px; }
+  .course { flex: 0 0 calc((100% - 24px) / 2); }
+  .school__content { width: auto; max-width: 460px; margin-right: 24px; }
+  .school::before { align-items: flex-start; justify-content: flex-start; padding: 16px 0 0 16px; }
+
+  /* календар */
+  .cal { display: block; overflow-x: auto; }
+  .cal thead,
+  .cal tbody { display: table; table-layout: fixed; width: 800px; }
+  .cal tbody th { width: 150px; }
+
+  /* бронювання */
+  .booking__title    { font-size: 48px; }
+  .booking__subtitle { font-size: 30px; margin: 10px 0 36px; }
+  .field,
+  .field--wide { flex: 0 0 calc(50% - 10px); }
+  .booking__line { width: 100%; }
+
+  /* команда */
+  .team__top { flex-direction: column; gap: 32px; }
+  .team__photo { flex: none; width: 100%; max-width: 560px; }
+  .team__list { margin-top: 48px; }
+  .member { flex: 0 0 calc((100% - 2px) / 2); }
+
+  /* studio moments */
+  .moments { --gap: 16px; }
+  .moments__row { flex-direction: column; }
+  .moments__head { flex: none; padding-top: 0; margin-bottom: 20px; }
+  .moments__photos { flex: none; width: 100%; flex-wrap: wrap; }
+  .moments__arrow { display: none; }
+  .moments__row--top .moments__img,
+  .moments__row--bottom .moments__img { flex: 0 0 calc((100% - var(--gap)) / 2); }
+
+  /* контакти: картка під картою */
+  .map { flex-direction: column; align-items: stretch; min-height: 0; padding: 0; }
+  .map::before { order: 0; flex: none; min-height: 280px; }
+  .map__card { flex: none; width: 100%; }
+
+  /* футер */
+  .footer__social { gap: var(--space-4); }
+}
+
+
+/* ---------- до 600px: смартфони — усе в стовпчик, кнопки на всю ширину ---------- */
+@media (max-width: 600px) {
+
+  :root {
+    --page-x: 16px;
+    --btn-width: 100%;      /* .pill-btn, .btn-white, .rooms__btn, .booking__btn */
+  }
+
+  .pill-btn,
+  .btn-white,
+  .rooms__btn,
+  .booking__btn { font-size: 18px; }
+
+  /* шапка */
+  .logo { gap: 8px; }
+  .logo__icon { width: 48px; font-size: 9px; }
+  .logo__text { font-size: 22px; }
+  .logo__sub  { font-size: 10px; letter-spacing: 2px; }
+
+  /* перший екран */
+  .hero { min-height: 560px; padding-bottom: 48px; }
+  .hero__inner { align-self: stretch; text-align: left; margin-bottom: 40px; }
+  .hero__title { font-size: 26px; letter-spacing: 3px; margin-bottom: 12px; }
+  .hero__text  { font-size: 18px; }
+  .hero__btn-text { font-size: 16px; margin-bottom: -24px; padding-left: 8px; }
+  .hero__line--before { width: 150px; }
+  .hero__line--after  { width: 30px; }
+  .hero__arrow { width: 60px; }
+  .hero__arrow svg { width: 30px; height: auto; }
+
+  /* про нас */
+  .about { padding-bottom: 40px; }
+  .about__title { font-size: 40px; margin-top: 36px; }
+  .about__intro,
+  .about__note,
+  .about__lead { font-size: 16px; }
+  .about__lead { letter-spacing: 0; }
+  .about__link { font-size: 18px; }
+  .about__arrow { width: 44px; }
+  .about__image { max-width: 75%; }
+
+  /* зали: одна колонка */
+  .rooms { padding: 56px var(--page-x) 40px; }
+  .rooms__title { font-size: 32px; }
+  .rooms__list { row-gap: 44px; }
+  .room { flex: 0 0 100%; }
+  .room__price { font-size: 18px; }
+  .room__name { font-size: 26px; margin: 24px 0 12px; }
+  .room__text { font-size: 18px; margin-bottom: 16px; }
+  .room__link { font-size: 18px; }
+  .room__arrow { width: 44px; }
+  .rooms__note { font-size: 16px; margin: 48px 0 24px; line-height: 1.4; }
+
+  /* послуги */
+  .services { padding-top: 56px; }
+  .services__title { font-size: 36px; margin-bottom: 24px; }
+  .service { margin-bottom: 40px; }
+  .service__num { width: 36px; font-size: 18px; }
+  .service__head { gap: 10px; }
+  .service__name { font-size: 22px; }
+  .service__body { padding-left: 46px; }
+  .service__desc { font-size: 16px; margin: 12px 0 16px; }
+  .service__price { font-size: 18px; min-height: 44px; padding: 0 20px; }
+
+  /* фотографи лишаються втрьох у ряд, як на макеті */
+  .photographers { gap: 8px; margin-top: var(--space-3); }
+  .photographer { padding: 0; background: transparent; }
+  .photographer__price { font-size: 12px; margin-bottom: 8px; padding: 3px 6px; }
+  .photographer__name { font-size: 13px; margin: 8px 0 4px; }
+  .photographer__role { font-size: 11px; margin: 0; }
+  .photographer__text { display: none; }
+
+  /* таблиця обладнання */
+  .equip { font-size: 16px; border-width: 4px; margin: 16px 0 24px; }
+  .equip td { padding: 12px 10px; }
+  .equip td:last-child { width: 104px; padding: 12px 4px; }
+
+  .certs__text { padding-bottom: 40px; }   /* щоб кнопка не торкалась чорної секції */
+  .certs__list { font-size: 16px; padding-left: 20px; margin-bottom: 24px; }
+  .certs__images { display: none; }   /* на макеті смартфона фото сертифікатів немає */
+
+  /* курси: одна колонка */
+  .courses { padding: 56px var(--page-x) 32px; }
+  .courses__title,
+  .courses__subtitle { font-size: 28px; }
+  .school { min-height: 360px; margin-bottom: 40px; }
+  .school__content { margin: 24px 16px; max-width: none; }
+  .school__name { font-size: 20px; }
+  .school__text { font-size: 16px; margin-bottom: 24px; }
+  .school__note { font-size: 16px; }
+  .courses__list { gap: 24px; }
+  .course { flex: 0 0 100%; min-height: 400px; }
+  .courses__list .course:nth-child(n) .course__name { margin: 70px 16px 0 0; }
+  .course__bottom { padding: 24px 16px 16px; }
+  .course__info { font-size: 16px; }
+
+  /* календар */
+  .calendar { padding: 24px var(--page-x) 32px; }
+  .calendar__title { font-size: 26px; }
+  .calendar__logo { font-size: 24px; }
+  .free { font-size: 20px; }
+
+  /* бронювання: одна колонка */
+  .booking { padding: 32px var(--page-x) 40px; }
+  .booking__title { font-size: 30px; -webkit-text-stroke-width: 1px; }
+  .booking__subtitle { font-size: 20px; margin: 10px 0 28px; }
+  .field,
+  .field--wide { flex: 0 0 100%; }
+  .field__label { font-size: 16px; }
+  .field__control { min-height: 52px; font-size: 16px; }
+  .booking__line { margin-top: 36px; }
+
+  /* команда */
+  .team { padding: 48px var(--page-x) 40px; }
+  .team__title { font-size: 28px; }
+  .team__subtitle { font-size: 16px; margin-bottom: 24px; }
+  .team__photo { max-width: none; }
+  .team__caption { font-size: 4.2cqw; padding-left: 16px; }
+  .team__text { font-size: 16px; }
+  .team__text p { margin-bottom: 20px; }
+  .team__list { margin-top: 32px; }
+  .member { flex: 0 0 100%; padding: 18px 20px; }
+  .member__name { font-size: 22px; }
+  .member__role { font-size: 16px; }
+
+  /* studio moments */
+  .moments { --gap: 8px; padding-block: 32px; }
+  .moments__title,
+  .moments__work-text { font-size: 24px; }
+  .moments__mark::after { width: 80px; }
+
+  /* контакти й футер */
+  .contacts { padding-top: 32px; }
+  .contacts__title { font-size: 28px; margin-bottom: 24px; padding-bottom: 16px; }
+  .map::before { min-height: 220px; }
+  .map__route { font-size: 16px; }
+  .contacts__note { font-size: 16px; }
+
+  .footer__title { font-size: 22px; }
+  .footer__social { flex-direction: column; gap: 24px; }
+  .social__text { font-size: 16px; }
+  .footer__logo-text { font-size: 28px; }
+}
+
+
+/* ---------- до 380px: найвужчі екрани (320–375) ---------- */
+@media (max-width: 380px) {
+  .logo__text { font-size: 20px; }
+  .hero__title { font-size: 23px; letter-spacing: 2px; }
+  .about__title { font-size: 36px; }
+  .rooms__title { font-size: 28px; }
+  .services__title { font-size: 32px; }
+  .courses__title,
+  .courses__subtitle { font-size: 24px; }
+  .booking__title { font-size: 26px; }
+  .free { font-size: 18px; }
+}
+
+
+/* повага до налаштування «зменшити рух» */
+@media (prefers-reduced-motion: reduce) {
+  .nav,
+  .burger span,
+  .burger span::before,
+  .burger span::after { transition: none; }
+}
