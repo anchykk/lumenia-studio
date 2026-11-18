@@ -1,0 +1,8 @@
+# Системні файли macOS і Windows
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Папки редакторів
+.vscode/
+.idea/
